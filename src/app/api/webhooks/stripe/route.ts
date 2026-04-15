@@ -15,16 +15,7 @@ export async function POST(request: NextRequest) {
     }
 
     const stripe = getStripeClient();
-
-    const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET
-    if (!webhookSecret) {
-      console.error("STRIPE_WEBHOOK_SECRET is not configured; refusing to process webhook.")
-      return NextResponse.json(
-        { error: "Webhook secret not configured" },
-        { status: 500 }
-      )
-    }
-
+    
     const body = await request.text()
     const headersList = await headers()
     const signature = headersList.get("stripe-signature")
@@ -42,7 +33,7 @@ export async function POST(request: NextRequest) {
       event = stripe.webhooks.constructEvent(
         body,
         signature,
-        webhookSecret
+        process.env.STRIPE_WEBHOOK_SECRET!
       )
     } catch (err) {
       console.error("Webhook签名验证失败:", err)
