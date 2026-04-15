@@ -83,18 +83,7 @@ if (process.env.NEXT_PUBLIC_AUTH_CREDENTIALS_ENABLED === "true") {
           return null
         }
 
-        // 🎯 开发环境测试账户（无需数据库）
-        if (process.env.NODE_ENV === 'development' && 
-            credentials.email === "test@example.com" && 
-            credentials.password === "password") {
-          return {
-            id: "test-user-id",
-            email: "test@example.com",
-            name: "Test User",
-          }
-        }
-
-        // 🚀 生产环境：使用Supabase认证（自带邮箱验证）
+        // 🚀 使用Supabase认证（自带邮箱验证）
         try {
           const supabase = createClient(
             process.env.NEXT_PUBLIC_SUPABASE_URL!,
