@@ -126,7 +126,7 @@ export const DEFAULT_LOCALE: SupportedLocale = 'en'
 export const EN_DICTIONARY: HomeDictionary = {
   hero: {
     badge: "Professional AI Image Generation Platform",
-    title: "Create Stunning Images with",
+    title: "XXX",
     subtitle: "Flux Kontext AI",
     description: "Transform your ideas into professional images with our cutting-edge AI technology. Generate images from text, edit existing images, and process multiple images with the power of Flux Kontext AI.",
     cta: {
